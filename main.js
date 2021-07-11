@@ -1,4 +1,3 @@
-
 const statusDisplay = document.querySelector('.game--status');
 
 let gameActive = true;
@@ -25,7 +24,7 @@ const winningConditions = [
 ];
 
 
-const cells = document.getElementsByClassName('cell');
+const cells = document.querySelectorAll('.cell')
 
 function handleCellPlayed(clickedCell, clickedCellIndex) {
 
@@ -43,11 +42,11 @@ function handlePlayerChange() {
 
 function handleResultValidation() {
     let roundWon = false;
-    for (let i = 0; i <= 7; i++) {
-        const winCondition = winningConditions[i];
-        let a = gameState[winCondition[0]];
-        let b = gameState[winCondition[1]];
-        let c = gameState[winCondition[2]];
+    for ( let i = 0; i <= 7; i++) {
+        var winCondition = winningConditions[i];
+        let a = gameState[winCondition[0]],
+            b = gameState[winCondition[1]],
+            c = gameState[winCondition[2]];
         if (a === '' || b === '' || c === '') {
             continue;
         }
@@ -57,16 +56,11 @@ function handleResultValidation() {
         }
     }
     if (roundWon) {
+        for ( let i = 0; i < 3; i++ ){
+            cells[winCondition[i]].style.background = "#13838b";
+            cells[winCondition[i]].style.color = "white";
+        }
         statusDisplay.innerHTML = winningMessage();
-        statusDisplay.style.display = "block";
-        statusDisplay.style.color = "blue";
-        console.log(cells[0])
-        cells[a].style.background = "#0d8b70";
-        cells[a].style.color = "white";
-        cells[b].style.background = "#0d8b70";
-        cells[b].style.color = "white";
-        cells[c].style.background = "#0d8b70";
-        cells[c].style.color = "white";  
         gameActive = false;
         return;
     }
@@ -106,23 +100,10 @@ function handleRestartGame() {
     currentPlayer = "X";
     gameState = ["", "", "", "", "", "", "", "", ""];
     statusDisplay.innerHTML = currentPlayerTurn();
-    document.querySelectorAll('.cell')
-               .forEach(cell => cell.innerHTML = "");
+    cells.forEach(cell => cell.innerHTML = "");
+    cells.forEach(cell => cell.style.background = "#36d15a" );
+    cells.forEach(cell => cell.style.color = "#000" );
 }
-
-function showWinner(x, y, z) {
-    boxes[x].style.background = "#0d8b70";
-    boxes[x].style.color = "white";
-    boxes[y].style.background = "#0d8b70";
-    boxes[y].style.color = "white";
-    boxes[z].style.background = "#0d8b70";
-    boxes[z].style.color = "white";
-    document.getElementById("winner").innerHTML =
-      currentPlayer == "x" ? "O" : "X";
-    document.getElementById("message").style.display = "block";
-    gameStatus = "Game Over";
-  }
-
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 document.querySelector('.game--restart').addEventListener('click', handleRestartGame);

@@ -14,12 +14,11 @@ section {
   margin: 50px auto;
 }
 .cell {
-  font-family: "Fira Sans", sans-serif;
   width: 100px;
   height: 100px;
   box-shadow: 0 0 0 1px #333333;
   border: 1px solid #333333;
-  background: #7ceb94;
+  background: #2cac4a;
   cursor: pointer;
   line-height: 100px;
   font-size: 60px;
