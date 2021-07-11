@@ -1,6 +1,6 @@
 # Tic Tac Toe With JavaScript
 
-Tic Tac Toe Built with JavaScript and hosted here.
+Tic Tac Toe Built with JavaScript and hosted [here](https://eteimz.github.io/Multiplayer_X_and_O_with_JS/).
 
 ## Resources
 
